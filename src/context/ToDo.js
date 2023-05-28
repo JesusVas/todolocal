@@ -1,4 +1,5 @@
 import { createContext,useState } from "react";
+import axios from "axios";
 const ToDoContext=createContext()
 function Provider({children}){
     const [toDo, setToDo] = useState([]);
@@ -42,6 +43,10 @@ function Provider({children}){
         });
         setToDo(updateToDo);
         setToDoEditing(null)
+    }
+    const valueToShare={
+        toDoEditing,handleClick,handleCancel,handleForm,setEditingText,toDo,
+        setToDoEditing,editingText,editToDo,work
     }
     return<ToDoContext.Provider value={valueToShare}>{children}</ToDoContext.Provider>
 }
