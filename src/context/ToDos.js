@@ -6,8 +6,9 @@ function Provider({children}){
     const [work, setWork] = useState("");
     const [toDoEditing,setToDoEditing]=useState([]);
     const [editingText,setEditingText]=useState("");
-
-    const handleClick=async()=> {
+//corregir todo lo que no sirve
+//avanzar cap 9
+    const addToDo=async()=> {//editar esto
         const response=await axios.post('http://localhost:3001/content',{
             work,
         });
@@ -16,9 +17,17 @@ function Provider({children}){
           setToDo(newAct);
           setWork("");
     }
-    const handleForm = (act) => {
+    const submitWork = (act) => {
         setWork(act);
     };
+    const deleteToDos= async (id)=>{
+        await axios.delete(`http://localhost:3001/content/${id}`)
+       
+        const updateToDo=toDo.filter((newToDo)=>{
+            return newToDo.id!==id;
+        })
+        setToDo(updateToDo);
+    }
     const editToDo=async(id)=>{
         const response=await axios.put(`http://localhost:3001/content/${id}`,{
             content:editingText
@@ -45,8 +54,8 @@ function Provider({children}){
         setToDoEditing(null)
     }
     const valueToShare={
-        toDoEditing,handleClick,handleCancel,handleForm,setEditingText,toDo,
-        setToDoEditing,editingText,editToDo,work
+        toDoEditing,addToDo,handleCancel,submitWork,setEditingText,toDo,
+        setToDoEditing,editingText,editToDo,work,deleteToDos
     }
     return<ToDoContext.Provider value={valueToShare}>{children}</ToDoContext.Provider>
 }

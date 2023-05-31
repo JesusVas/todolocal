@@ -4,11 +4,12 @@ import ListItem from '@mui/material/ListItem';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
-import axios from 'axios';
-import ToDoContext from '../context/ToDo';
+
+import ToDoContext from '../context/ToDos';
 import { useContext } from 'react';
 function ToDoList() {
-  const{toDo,toDoEditing,setEditingText,setToDo,editToDo,handleCancel,setToDoEditing}=useContext(ToDoContext);
+  const{toDo,toDoEditing,setEditingText,editToDo,handleCancel,setToDoEditing,deleteToDos}=useContext(ToDoContext);
+
   return (
    <div>
       <List>
@@ -22,7 +23,7 @@ function ToDoList() {
           } 
          </div>
          <div>
-        <IconButton onClick={async()=>{await axios.delete(`http://localhost:3001/content/${dats.id}`);setToDo(toDo.filter(a=> a.id!==dats.id))}}  >
+        <IconButton onClick={() => deleteToDos(dats.id)}  >
           <DeleteIcon  />
         </IconButton>
         

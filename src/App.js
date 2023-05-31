@@ -7,7 +7,10 @@ import AppBar from '@mui/material/AppBar';
 import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
-import { Provider } from './context/ToDo';
+import { Provider } from './context/ToDos';
+/*Crear una app que simule el menu de un restaurante con typecript(antes de iniciar esto ver Todo y acabar este proyecto)
+    por ej:una hanburguesa,un refresco,la orden debe imprimir un pdf 
+*/
 function App(){
    return( 
         <Provider>
